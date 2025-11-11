@@ -1,0 +1,90 @@
+HRM UI PLATFORM - CURRENT STATE OVERVIEW
+======================================
+
+SUMMARY
+-------
+This repository hosts a dual-portal Human Resource Management (HRM) interface built with PHP, Bootstrap 5, Font Awesome, and vanilla JavaScript. The solution targets two primary user types—administrators and employees—delivering responsive dashboards, attendance tracking, leave management, payroll insights, announcements, events, recruitment workflows, and a public recruitment form.
+
+
+TECHNOLOGY STACK
+----------------
+- PHP (procedural templates with includes for shared layout components)
+- HTML5 + CSS3 (Bootstrap 5, custom styling, Google Fonts, Font Awesome icons)
+- Vanilla JavaScript (modular scripts per feature, WebSocket-friendly architecture)
+- Assets managed locally under `assets/image/`
+
+
+DIRECTORY STRUCTURE HIGHLIGHTS
+------------------------------
+- `admin/`
+  - `header.php` / `footer.php` define the admin layout shell (sidebar, topbar, navigation).
+  - Feature pages: `dashboard.php`, `employee.php`, `employeeprofile.php`, `addemployee.php`, `attendance.php`, `attendance-report.php`, `leave-history.php`, `leaverequest.php`, `payroll.php`, `recruitment.php`, `event.php`, `announcement.php`, `notification.php`.
+  - Scripts under `include/js/` (e.g., `attendance.js`, `payroll.js`, `script.js`) initialize responsive behavior, modals, and hook points for future WebSocket data feeds.
+  - Styles stored in `include/css/style.css`, ensuring a consistent dark-themed admin experience with glassmorphism elements.
+
+- `user/`
+  - Mirrored structure for employee-facing portal: shared layout includes, feature pages for announcements, attendance, leave history, payroll, notifications, and profile.
+  - JavaScript modules in `user/include/js/` focus on employee interactions and mirror admin script architecture.
+
+- `assets/image/`
+  - Contains static imagery for dashboards, login screen, announcements, and onboarding visuals.
+
+- Root files:
+  - `index.php` – Landing/login screen referencing the project visuals.
+  - `recruitmentform.php` – Public recruitment/joining form capturing personal, banking, employment, and document details in a fully responsive layout.
+  - `README.md` – Setup instructions, contributor guidelines, development notes.
+  - (Expected) `database.sql` – Master schema dump for provisioning MySQL tables (mentioned in README; ensure it exists before deployment).
+
+
+KEY MODULE DETAILS
+------------------
+1. Admin Dashboard (`admin/dashboard.php`):
+   - Static demo metrics (total employees, attendance stats, KPIs, employment levels, interviews).
+   - Layout ready for real data binding through APIs/WebSockets.
+
+2. Employee Management:
+   - List, add, and profile pages for employees.
+   - JavaScript modules scaffolded for CRUD operations and dynamic table handling.
+
+3. Attendance & Leave:
+   - Admin pages for attendance capture and reporting.
+   - Leave history and request views for both admin and employees.
+
+4. Payroll:
+   - Payroll overview pages with placeholders for salary data, payslips, and payment status.
+
+5. Recruitment & Events:
+   - Admin panels to oversee hiring pipelines, schedule events, post announcements, and publish notifications.
+   - Public recruitment form collects comprehensive candidate data (personal details, bank info, employment history, document uploads).
+
+6. Shared UX:
+   - Sidebar navigation with unique classes/IDs for future scripting.
+   - Mobile-friendly responsive design (collapsible sidebars, adaptive grids).
+   - JavaScript ensures no polling (`setInterval`) and anticipates WebSocket-driven real-time updates.
+
+
+CURRENT LIMITATIONS / TODOS
+---------------------------
+- Data is placeholder/static; backend API or database integration needed for production use.
+- Authentication/authorization flow is not implemented yet.
+- WebSocket connections need to be wired to actual real-time services.
+- Ensure `database.sql` and incremental ALTER scripts exist and align with README guidance.
+- Configure `config/config.php` with database credentials once backend is connected (file not yet present).
+
+
+NEXT-STEP ENHANCEMENTS (SUGGESTED)
+----------------------------------
+- Implement database-backed CRUD for employees, attendance, leaves, payroll, announcements, and events.
+- Add authentication (sessions, role-based access controls) for admin vs. employee portals.
+- Integrate WebSocket server for live updates (attendance status, notifications, announcements).
+- Build employee self-service features (profile updates, document center, payslip downloads).
+- Develop performance management, onboarding/offboarding checklists, and expense claim workflows.
+- Expand reporting/analytics with export options that leverage server-side data.
+
+
+NOTES
+-----
+- Follow the project convention: UI first, unique classes/IDs, Bootstrap icons.
+- When modifying schema, create standalone ALTER scripts to accompany `database.sql`.
+- Maintain ASCII encoding for new files unless otherwise required.
+
